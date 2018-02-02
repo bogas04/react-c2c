@@ -26,7 +26,13 @@ export class App extends React.PureComponent {
           <C2C text={this.state.value}>{({ copied, handleClick }) =>
             copied
               ? <span style={{color: 'red'}}>Copied.</span>
-              : <button onClick={handleClick}>Copy to clipboard with button</button>
+              : <button
+                  onClick={e => {
+                    this.onClick(e);
+                    handleClick(e);
+                  }}>
+                    Copy to clipboard with button
+                </button>
           }</C2C>
         </section>
 
