@@ -37,6 +37,17 @@ export class C2C extends React.PureComponent {
     });
   };
 
+  componentDidUpdate (previousProps, previousState) {
+    const shouldResetCopiedState = (
+      previousProps.text !== this.props.text // text got updated
+      && previousState.copied === true       // and previous copied state was true
+      && this.state.copied === true          // and current copied state is still true
+    );
+    
+    if (shouldResetCopiedState) {
+      this.setState({ copied: false });      // reset copied state to false
+    }
+  }
 
   render() {
     const {
